@@ -1,24 +1,41 @@
-# Compiled class file
+# ===== Maven: saída de compilação (gerada, não é código-fonte) =====
+target/
+dependency-reduced-pom.xml
+
+# ===== Arquivos compilados e pacotes =====
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
-*.nar
 *.ear
 *.zip
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# ===== Logs e relatórios de falha da JVM =====
+*.log
 hs_err_pid*
 replay_pid*
+
+# ===== VS Code e extensão Java (gerados automaticamente) =====
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+bin/
+
+# ===== Eclipse e IntelliJ (outros membros do grupo podem usar) =====
+.metadata/
+.idea/
+*.iml
+
+# ===== Configurações locais e segredos =====
+.env
+*.local
+*.local.properties
+
+# ===== Arquivos do sistema operacional =====
+.DS_Store
+Thumbs.db
+*~
+.directory
