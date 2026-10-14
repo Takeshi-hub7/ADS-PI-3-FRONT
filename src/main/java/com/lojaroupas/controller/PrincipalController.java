@@ -2,6 +2,7 @@ package com.lojaroupas.controller;
 
 import com.lojaroupas.model.PerfilAcesso;
 import com.lojaroupas.util.Alertas;
+import com.lojaroupas.util.Configuracao;
 import com.lojaroupas.util.ExecutorAssincrono;
 import com.lojaroupas.util.Navegador;
 import com.lojaroupas.util.Sessao;
@@ -94,7 +95,7 @@ public class PrincipalController {
         rotuloUsuario.setText(Sessao.getUsuarioLogado().getNome());
         rotuloPerfil.setText(
                 perfil == PerfilAcesso.ADMIN ? "Proprietário" : "Funcionário");
-        rotuloServidor.setText("Servidor: " + Sessao.getUrlServidor());
+            rotuloServidor.setText(Configuracao.descreverServidor());
 
         botoesMenu = List.of(botaoInicio, botaoTrajes, botaoPecas,
                 botaoLocacoes, botaoAgenda, botaoClientes,

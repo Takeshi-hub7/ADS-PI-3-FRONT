@@ -12,8 +12,9 @@
     Tela de login.
     Controller: LoginController.
     O cartão fica centralizado sobre o fundo escuro.
+    O endereço da API não é pedido aqui: vem da configuração.
     Identificadores usados pelo controller:
-      campoServidor, campoEmail, campoSenha, botaoEntrar, rotuloErro.
+      campoEmail, campoSenha, botaoEntrar, rotuloErro.
 -->
 <StackPane xmlns="http://javafx.com/javafx/26"
            xmlns:fx="http://javafx.com/fxml/1"
@@ -27,16 +28,11 @@
         <Label text="Entre com sua conta para continuar"
                styleClass="subtitulo"/>
 
-        <!-- Endereço da API: permite o uso em rede (outras máquinas) -->
-        <Label text="Servidor (API)" styleClass="rotulo">
+        <Label text="E-mail" styleClass="rotulo">
             <VBox.margin>
                 <Insets top="14"/>
             </VBox.margin>
         </Label>
-        <TextField fx:id="campoServidor"
-                   promptText="http://192.168.0.10:8080"/>
-
-        <Label text="E-mail" styleClass="rotulo"/>
         <TextField fx:id="campoEmail" promptText="seu e-mail"/>
 
         <Label text="Senha" styleClass="rotulo"/>

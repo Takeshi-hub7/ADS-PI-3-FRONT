@@ -4,17 +4,16 @@ import com.lojaroupas.model.PerfilAcesso;
 import com.lojaroupas.model.Usuario;
 
 /**
- * Guarda em memória quem está logado e o endereço do servidor.
+ * Guarda em memória quem está logado.
  *
- * <p>Nada é gravado em disco. A senha nunca deve ser armazenada.</p>
+ * <p>Nada é gravado em disco. A senha nunca deve ser armazenada. O
+ * endereço do servidor não fica aqui: vem da classe
+ * {@link Configuracao}.</p>
  */
 public final class Sessao {
 
     /** Usuário autenticado; {@code null} se não há sessão ativa. */
     private static Usuario usuarioLogado;
-
-    /** Endereço base da API informado no login. */
-    private static String urlServidor;
 
     /** Impede a criação de instâncias da classe utilitária. */
     private Sessao() {
@@ -24,17 +23,14 @@ public final class Sessao {
      * Inicia uma sessão após o login.
      *
      * @param usuario usuário autenticado
-     * @param url endereço base da API
      */
-    public static void iniciar(Usuario usuario, String url) {
+    public static void iniciar(Usuario usuario) {
         usuarioLogado = usuario;
-        urlServidor = url;
     }
 
-    /** Encerra a sessão, descartando usuário e endereço do servidor. */
+    /** Encerra a sessão, descartando o usuário logado. */
     public static void encerrar() {
         usuarioLogado = null;
-        urlServidor = null;
     }
 
     /**
@@ -44,15 +40,6 @@ public final class Sessao {
      */
     public static Usuario getUsuarioLogado() {
         return usuarioLogado;
-    }
-
-    /**
-     * Retorna o endereço base da API.
-     *
-     * @return endereço do servidor, ou {@code null} se não há sessão
-     */
-    public static String getUrlServidor() {
-        return urlServidor;
     }
 
     /**
