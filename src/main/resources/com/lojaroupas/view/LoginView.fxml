@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Tela de login.
+    Controller: LoginController.
+    O cartão fica centralizado sobre o fundo escuro.
+    O endereço da API não é pedido aqui: vem da configuração.
+    Identificadores usados pelo controller:
+      campoEmail, campoSenha, botaoEntrar, rotuloErro.
+-->
+<StackPane xmlns="http://javafx.com/javafx/26"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.lojaroupas.controller.LoginController"
+           styleClass="login-fundo">
+
+    <VBox styleClass="login-cartao" spacing="10"
+          maxWidth="380" maxHeight="-Infinity">
+
+        <Label text="TRAJELOC" styleClass="titulo"/>
+        <Label text="Entre com sua conta para continuar"
+               styleClass="subtitulo"/>
+
+        <Label text="E-mail" styleClass="rotulo">
+            <VBox.margin>
+                <Insets top="14"/>
+            </VBox.margin>
+        </Label>
+        <TextField fx:id="campoEmail" promptText="seu e-mail"/>
+
+        <Label text="Senha" styleClass="rotulo"/>
+        <PasswordField fx:id="campoSenha" promptText="sua senha"
+                       onAction="#entrar"/>
+
+        <Label fx:id="rotuloErro" styleClass="erro" wrapText="true"/>
+
+        <Button fx:id="botaoEntrar" text="Entrar" onAction="#entrar"
+                styleClass="botao-primario" maxWidth="Infinity"
+                defaultButton="true"/>
+
+        <!-- REMOVER na integração com a API -->
+        <Label text="Teste: admin@loja.com / admin123  ·  func@loja.com / func123"
+               styleClass="dica" wrapText="true"/>
+    </VBox>
+</StackPane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Tela inicial. Controller: InicioController.
+    Identificador usado pelo controller: rotuloBoasVindas.
+-->
+<VBox xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lojaroupas.controller.InicioController"
+      spacing="12" styleClass="tela">
+
+    <Label text="Início" styleClass="titulo"/>
+    <Label fx:id="rotuloBoasVindas" styleClass="subtitulo"/>
+
+    <VBox styleClass="cartao" spacing="6">
+        <Label text="Resumo do dia" styleClass="secao"/>
+        <Label text="Em breve: locações em andamento, devoluções previstas e provas agendadas."/>
+    </VBox>
+</VBox>

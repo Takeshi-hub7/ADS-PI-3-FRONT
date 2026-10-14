@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Tela provisória reutilizada pelos módulos ainda não implementados.
+    Controller: EmConstrucaoController, que recebe título e subtítulo
+    do menu lateral.
+-->
+<VBox xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lojaroupas.controller.EmConstrucaoController"
+      spacing="12" styleClass="tela">
+
+    <Label fx:id="rotuloTitulo" styleClass="titulo"/>
+    <Label fx:id="rotuloSubtitulo" styleClass="subtitulo"/>
+
+    <VBox styleClass="cartao">
+        <Label text="Tela em construção."/>
+    </VBox>
+</VBox>

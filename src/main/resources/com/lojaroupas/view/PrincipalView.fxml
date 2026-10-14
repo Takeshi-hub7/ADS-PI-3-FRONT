@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Moldura do sistema: menu lateral à esquerda e área de conteúdo ao
+    centro. Controller: PrincipalController.
+    Os botões "Funcionários" e "Financeiro" são escondidos pelo
+    controller quando o perfil não é ADMIN.
+-->
+<BorderPane xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lojaroupas.controller.PrincipalController">
+
+    <!-- Menu lateral -->
+    <left>
+        <VBox styleClass="barra-lateral" prefWidth="250" minWidth="250">
+
+            <Label text="TRAJELOC" styleClass="logo"/>
+            <Label fx:id="rotuloUsuario" styleClass="usuario"/>
+            <Label fx:id="rotuloPerfil" styleClass="perfil"/>
+
+            <VBox spacing="4" VBox.vgrow="ALWAYS">
+                <Button fx:id="botaoInicio" text="Início"
+                        onAction="#abrirInicio"
+                        styleClass="botao-menu" maxWidth="Infinity"/>
+                <Button fx:id="botaoTrajes" text="Trajes"
+                        onAction="#abrirTrajes"
+                        styleClass="botao-menu" maxWidth="Infinity"/>
+                <Button fx:id="botaoPecas" text="Peças e Estoque"
+                        onAction="#abrirPecas"
+                        styleClass="botao-menu" maxWidth="Infinity"/>
+                <Button fx:id="botaoLocacoes" text="Locações"
+                        onAction="#abrirLocacoes"
+                        styleClass="botao-menu" maxWidth="Infinity"/>
+                <Button fx:id="botaoAgenda" text="Agenda de Provas"
+                        onAction="#abrirAgenda"
+                        styleClass="botao-menu" maxWidth="Infinity"/>
+                <Button fx:id="botaoClientes" text="Clientes"
+                        onAction="#abrirClientes"
+                        styleClass="botao-menu" maxWidth="Infinity"/>
+                <Button fx:id="botaoFuncionarios" text="Funcionários"
+                        onAction="#abrirFuncionarios"
+                        styleClass="botao-menu" maxWidth="Infinity"/>
+                <Button fx:id="botaoFinanceiro" text="Financeiro"
+                        onAction="#abrirFinanceiro"
+                        styleClass="botao-menu" maxWidth="Infinity"/>
+            </VBox>
+
+            <Label fx:id="rotuloServidor" styleClass="servidor"/>
+            <Button text="Sair" onAction="#sair"
+                    styleClass="botao-sair" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+
+    <!-- Área onde o PrincipalController carrega cada tela -->
+    <center>
+        <StackPane fx:id="areaConteudo" styleClass="conteudo"/>
+    </center>
+</BorderPane>
