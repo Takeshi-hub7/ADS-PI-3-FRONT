@@ -40,9 +40,6 @@ public class ClientesController {
     /** Tamanho máximo do endereço, igual ao limite da API. */
     private static final int TAMANHO_MAXIMO_ENDERECO = 100;
 
-    /** Título dos diálogos desta tela. */
-    private static final String TITULO_TELA = "Clientes";
-
     /** Título do formulário em modo de cadastro. */
     private static final String TITULO_NOVO = "Novo cliente";
 
@@ -195,8 +192,7 @@ public class ClientesController {
                 () -> servico.salvar(cliente),
                 salvo -> {
                     botaoSalvar.setDisable(false);
-                    Alertas.exibirInformacao(TITULO_TELA,
-                            "Cliente salvo com sucesso.");
+                    Alertas.mostrarAviso("Cliente salvo com sucesso.");
                     novo();
                     carregar();
                 },

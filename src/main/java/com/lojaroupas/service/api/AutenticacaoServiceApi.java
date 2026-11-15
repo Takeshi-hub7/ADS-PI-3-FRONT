@@ -42,7 +42,8 @@ public class AutenticacaoServiceApi implements AutenticacaoService {
             throw new ServiceException(MSG_SEM_ACESSO);
         }
         // A API ainda não emite token; o campo fica vazio até existir.
-        return new Usuario(resposta.path("nome").asText(),
+        return new Usuario(resposta.path("idUsuario").asInt(),
+                resposta.path("nome").asText(),
                 resposta.path("email").asText(), perfilAcesso, "");
     }
 }

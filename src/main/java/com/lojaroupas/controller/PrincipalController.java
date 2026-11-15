@@ -11,6 +11,7 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
@@ -27,6 +28,12 @@ public class PrincipalController {
 
     /** Arquivo FXML da tela de clientes. */
     private static final String TELA_CLIENTES = "ClientesView.fxml";
+
+    /** Arquivo FXML da tela de locações. */
+    private static final String TELA_LOCACOES = "LocacoesView.fxml";
+
+    /** Classe de estilo dos itens previstos para as próximas versões. */
+    private static final String CLASSE_EM_BREVE = "em-breve";
 
     /** Arquivo FXML da tela provisória. */
     private static final String TELA_EM_CONSTRUCAO = "EmConstrucaoView.fxml";
@@ -105,6 +112,12 @@ public class PrincipalController {
             esconder(botaoFuncionarios);
             esconder(botaoFinanceiro);
         }
+        // Telas previstas para as próximas versões (item 11 de ES II):
+        // ficam visíveis no menu, mas sem ação.
+        for (Button botao : List.of(botaoTrajes, botaoPecas, botaoAgenda,
+                botaoFuncionarios, botaoFinanceiro)) {
+            marcarEmBreve(botao);
+        }
 
         abrirInicio();
     }
@@ -129,11 +142,10 @@ public class PrincipalController {
                 "Peças de cada traje e quantidade em estoque", botaoPecas);
     }
 
-    /** Abre a tela de locações (provisória). */
+    /** Abre a tela de locações. */
     @FXML
     private void abrirLocacoes() {
-        abrirEmConstrucao("Locações",
-                "Trajes alugados, retiradas e devoluções", botaoLocacoes);
+        abrirTela(TELA_LOCACOES, botaoLocacoes);
     }
 
     /** Abre a tela da agenda de provas (provisória). */
@@ -251,5 +263,21 @@ public class PrincipalController {
     private void esconder(Button botao) {
         botao.setVisible(false);
         botao.setManaged(false);
+    }
+
+    /**
+     * Desativa um item de menu cuja tela ainda não existe e indica que
+     * ele vem nas próximas versões.
+     *
+     * @param botao item de menu
+     */
+    private void marcarEmBreve(Button botao) {
+        Label selo = new Label("em breve");
+        selo.getStyleClass().add("selo-em-breve");
+        botao.setGraphic(selo);
+        botao.setContentDisplay(ContentDisplay.RIGHT);
+        botao.setGraphicTextGap(8);
+        botao.setDisable(true);
+        botao.getStyleClass().add(CLASSE_EM_BREVE);
     }
 }

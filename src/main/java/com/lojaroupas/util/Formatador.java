@@ -1,7 +1,10 @@
 package com.lojaroupas.util;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Funções de formatação de textos exibidos na interface.
@@ -67,5 +70,17 @@ public final class Formatador {
             return "";
         }
         return FORMATO_DATA.format(data);
+    }
+
+    /**
+     * Formata um valor em reais, como R$ 1.250,00.
+     *
+     * @param valor valor a formatar, possivelmente {@code null}
+     * @return valor formatado; R$ 0,00 se o valor for nulo
+     */
+    public static String formatarMoeda(BigDecimal valor) {
+        NumberFormat formato =
+                NumberFormat.getCurrencyInstance(Locale.of("pt", "BR"));
+        return formato.format(valor == null ? BigDecimal.ZERO : valor);
     }
 }

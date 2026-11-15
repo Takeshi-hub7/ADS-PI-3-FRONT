@@ -14,7 +14,7 @@
     O cartão fica centralizado sobre o fundo escuro.
     O endereço da API não é pedido aqui: vem da configuração.
     Identificadores usados pelo controller:
-      campoEmail, campoSenha, botaoEntrar, rotuloErro.
+      campoEmail, campoSenha, botaoEntrar, rotuloErro, rotuloDica.
 -->
 <StackPane xmlns="http://javafx.com/javafx/26"
            xmlns:fx="http://javafx.com/fxml/1"
@@ -45,8 +45,8 @@
                 styleClass="botao-primario" maxWidth="Infinity"
                 defaultButton="true"/>
 
-        <!-- REMOVER na integração com a API -->
-        <Label text="Teste: admin@loja.com / admin123  ·  func@loja.com / func123"
-               styleClass="dica" wrapText="true"/>
+        <!-- Preenchido pelo controller: logins de teste no modo mock,
+             endereço do servidor no modo API -->
+        <Label fx:id="rotuloDica" styleClass="dica" wrapText="true"/>
     </VBox>
 </StackPane>
