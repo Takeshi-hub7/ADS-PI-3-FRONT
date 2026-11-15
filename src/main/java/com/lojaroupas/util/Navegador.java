@@ -22,7 +22,7 @@ public final class Navegador {
     private static final String ARQUIVO_CSS = "/css/estilo.css";
 
     /** Título exibido na barra da janela. */
-    private static final String TITULO_JANELA = "TrajeLoc";
+    private static final String TITULO_JANELA = "TRAJELOC";
 
     /** Arquivo FXML da tela de login. */
     private static final String TELA_LOGIN = "LoginView.fxml";
@@ -111,8 +111,29 @@ public final class Navegador {
         return tela.raiz();
     }
 
+    /**
+     * Retorna o endereço da folha de estilo, para aplicá-la também aos
+     * diálogos, que abrem em janelas próprias.
+     *
+     * @return URL da folha de estilo, ou {@code null} se não existir
+     */
+    public static String getEnderecoCss() {
+        URL css = Navegador.class.getResource(ARQUIVO_CSS);
+        return css == null ? null : css.toExternalForm();
+    }
+
+    /**
+     * Retorna a janela principal da aplicação.
+     *
+     * @return janela registrada em {@link #iniciar(Stage)}
+     */
+    public static Stage getPalco() {
+        return palco;
+    }
+
     /** Exibe a tela de login na janela. */
     public static void mostrarLogin() {
+        palco.setMaximized(false);
         trocarCena(carregar(TELA_LOGIN), LARGURA_LOGIN, ALTURA_LOGIN,
                 LARGURA_MINIMA_LOGIN, ALTURA_MINIMA_LOGIN);
     }
@@ -122,6 +143,7 @@ public final class Navegador {
         trocarCena(carregar(TELA_PRINCIPAL), LARGURA_PRINCIPAL,
                 ALTURA_PRINCIPAL, LARGURA_MINIMA_PRINCIPAL,
                 ALTURA_MINIMA_PRINCIPAL);
+        palco.setMaximized(true);
     }
 
     /**

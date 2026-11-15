@@ -1,6 +1,7 @@
 package com.lojaroupas.controller;
 
 import com.lojaroupas.service.FabricaServicos;
+import com.lojaroupas.util.Configuracao;
 import com.lojaroupas.util.ExecutorAssincrono;
 import com.lojaroupas.util.Navegador;
 import com.lojaroupas.util.Sessao;
@@ -40,6 +41,21 @@ public class LoginController {
     /** Rótulo onde as mensagens de erro são exibidas. */
     @FXML
     private Label rotuloErro;
+
+    /** Rótulo de rodapé: logins de teste ou endereço do servidor. */
+    @FXML
+    private Label rotuloDica;
+
+    /** Mostra os logins de teste só no modo mock. */
+    @FXML
+    private void initialize() {
+        if (Configuracao.isModoMock()) {
+            rotuloDica.setText("Modo de teste: admin@loja.com / admin123"
+                    + "  ·  func@loja.com / func123");
+        } else {
+            rotuloDica.setText(Configuracao.descreverServidor());
+        }
+    }
 
     /**
      * Valida os campos e autentica o usuário.

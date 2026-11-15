@@ -18,7 +18,7 @@
 
     <!-- Menu lateral -->
     <left>
-        <VBox styleClass="barra-lateral" prefWidth="250" minWidth="250">
+        <VBox styleClass="barra-lateral" prefWidth="270" minWidth="270">
 
             <Label text="TRAJELOC" styleClass="logo"/>
             <Label fx:id="rotuloUsuario" styleClass="usuario"/>

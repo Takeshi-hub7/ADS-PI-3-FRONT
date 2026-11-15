@@ -20,6 +20,9 @@ public final class Usuario {
     /** Token de autenticação fornecido pela API. */
     private final String token;
 
+    /** Identificador do usuário na API; {@code null} no modo mock. */
+    private final Integer idUsuario;
+
     /**
      * Cria um usuário autenticado.
      *
@@ -30,6 +33,21 @@ public final class Usuario {
      */
     public Usuario(String nome, String email, PerfilAcesso perfilAcesso,
             String token) {
+        this(null, nome, email, perfilAcesso, token);
+    }
+
+    /**
+     * Cria um usuário autenticado pela API, com o identificador.
+     *
+     * @param idUsuario identificador do usuário na API
+     * @param nome nome exibido na interface
+     * @param email e-mail de login
+     * @param perfilAcesso perfil de acesso
+     * @param token token da sessão
+     */
+    public Usuario(Integer idUsuario, String nome, String email,
+            PerfilAcesso perfilAcesso, String token) {
+        this.idUsuario = idUsuario;
         this.nome = nome;
         this.email = email;
         this.perfilAcesso = perfilAcesso;
@@ -70,5 +88,14 @@ public final class Usuario {
      */
     public String getToken() {
         return token;
+    }
+
+    /**
+     * Retorna o identificador do usuário na API.
+     *
+     * @return identificador, ou {@code null} no modo mock
+     */
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 }

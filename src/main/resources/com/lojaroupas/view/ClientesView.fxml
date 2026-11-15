@@ -32,10 +32,10 @@
                        promptText="Buscar por nome, CPF ou RG..."/>
             <TableView fx:id="tabelaClientes" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colunaNome" text="Nome"/>
-                    <TableColumn fx:id="colunaCpf" text="CPF"/>
-                    <TableColumn fx:id="colunaTelefone" text="Telefone"/>
-                    <TableColumn fx:id="colunaRg" text="RG"/>
+                    <TableColumn fx:id="colunaNome" text="Nome" prefWidth="200"/>
+                    <TableColumn fx:id="colunaCpf" text="CPF" prefWidth="135"/>
+                    <TableColumn fx:id="colunaTelefone" text="Telefone" prefWidth="140"/>
+                    <TableColumn fx:id="colunaRg" text="RG" prefWidth="115"/>
                     <TableColumn fx:id="colunaNascimento"
                                  text="Nascimento"/>
                 </columns>

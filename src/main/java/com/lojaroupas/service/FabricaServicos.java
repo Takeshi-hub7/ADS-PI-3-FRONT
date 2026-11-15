@@ -2,8 +2,14 @@ package com.lojaroupas.service;
 
 import com.lojaroupas.service.api.AutenticacaoServiceApi;
 import com.lojaroupas.service.api.ClienteServiceApi;
+import com.lojaroupas.service.api.FuncionarioServiceApi;
+import com.lojaroupas.service.api.LocacaoServiceApi;
+import com.lojaroupas.service.api.PecaServiceApi;
 import com.lojaroupas.service.mock.AutenticacaoServiceMock;
 import com.lojaroupas.service.mock.ClienteServiceMock;
+import com.lojaroupas.service.mock.FuncionarioServiceMock;
+import com.lojaroupas.service.mock.LocacaoServiceMock;
+import com.lojaroupas.service.mock.PecaServiceMock;
 import com.lojaroupas.util.Configuracao;
 
 /**
@@ -20,6 +26,15 @@ public final class FabricaServicos {
 
     /** Serviço de clientes em uso; criado na primeira chamada. */
     private static ClienteService clienteService;
+
+    /** Serviço de peças em uso; criado na primeira chamada. */
+    private static PecaService pecaService;
+
+    /** Serviço de funcionários em uso; criado na primeira chamada. */
+    private static FuncionarioService funcionarioService;
+
+    /** Serviço de locações em uso; criado na primeira chamada. */
+    private static LocacaoService locacaoService;
 
     /** Impede a criação de instâncias da classe utilitária. */
     private FabricaServicos() {
@@ -75,5 +90,49 @@ public final class FabricaServicos {
             return new ClienteServiceMock();
         }
         return new ClienteServiceApi();
+    }
+
+    /**
+     * Retorna o serviço de peças, criando-o se necessário.
+     *
+     * @return serviço de peças em uso
+     */
+    public static synchronized PecaService obterPecaService() {
+        if (pecaService == null) {
+            pecaService = Configuracao.isModoMock()
+                    ? new PecaServiceMock() : new PecaServiceApi();
+        }
+        return pecaService;
+    }
+
+    /**
+     * Retorna o serviço de funcionários, criando-o se necessário.
+     *
+     * @return serviço de funcionários em uso
+     */
+    public static synchronized FuncionarioService
+            obterFuncionarioService() {
+        if (funcionarioService == null) {
+            funcionarioService = Configuracao.isModoMock()
+                    ? new FuncionarioServiceMock()
+                    : new FuncionarioServiceApi();
+        }
+        return funcionarioService;
+    }
+
+    /**
+     * Retorna o serviço de locações, criando-o se necessário.
+     *
+     * <p>A instância é única para que as locações do mock persistam
+     * entre as telas.</p>
+     *
+     * @return serviço de locações em uso
+     */
+    public static synchronized LocacaoService obterLocacaoService() {
+        if (locacaoService == null) {
+            locacaoService = Configuracao.isModoMock()
+                    ? new LocacaoServiceMock() : new LocacaoServiceApi();
+        }
+        return locacaoService;
     }
 }
