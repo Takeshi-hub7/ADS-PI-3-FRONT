@@ -24,7 +24,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>26</java.version>
         <javafx.version>26</javafx.version>
-        <jackson.version>2.18.2</jackson.version>
     </properties>
 
         <!-- Garante versões consistentes entre os módulos do Jackson -->
@@ -64,20 +63,6 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
-        </dependency>
-
-        <!-- Conversão entre objetos Java e JSON na comunicação com a API -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <!-- Suporte do Jackson às datas do java.time (LocalDate) -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 
