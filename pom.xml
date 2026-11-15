@@ -20,12 +20,37 @@
 
     <!-- Versões centralizadas em um único lugar -->
     <properties>
+        <jackson.version>2.21.0</jackson.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>26</java.version>
         <javafx.version>26</javafx.version>
     </properties>
 
+        <!-- Garante versões consistentes entre os módulos do Jackson -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <!-- Conversão entre objetos Java e JSON -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- Suporte a LocalDate (data de nascimento do cliente) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
         <!-- Componentes visuais (botões, tabelas, formulários) -->
         <dependency>
             <groupId>org.openjfx</groupId>
