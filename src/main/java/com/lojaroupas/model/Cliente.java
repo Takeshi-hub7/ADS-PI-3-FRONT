@@ -5,9 +5,8 @@ import java.time.LocalDate;
 /**
  * Cliente da loja, como a interface o enxerga.
  *
- * <p>Os atributos seguem os campos descritos na documentação do back-end.
- * Ajustar quando {@code ClienteRequest} e {@code ClienteResponse}
- * forem confirmados.</p>
+ * <p>Os atributos seguem {@code ClienteRequest} e {@code ClienteResponse}
+ * do back-end.</p>
  */
 public class Cliente {
 
@@ -20,6 +19,12 @@ public class Cliente {
     /** CPF do cliente (obrigatório). */
     private String cpf = "";
 
+    /** Telefone de contato (obrigatório, até 15 caracteres). */
+    private String telefone = "";
+
+    /** Endereço (obrigatório, até 100 caracteres). */
+    private String endereco = "";
+
     /** RG do cliente (opcional). */
     private String rg = "";
 
@@ -28,6 +33,12 @@ public class Cliente {
 
     /** Medidas do cliente, em texto livre (opcional). */
     private String medidas = "";
+
+    /**
+     * Usuário de acesso vinculado, se houver. Não aparece na tela; é
+     * guardado só para ser devolvido à API ao alterar o cliente.
+     */
+    private Integer idUsuario;
 
     /**
      * Retorna o identificador do cliente.
@@ -135,5 +146,59 @@ public class Cliente {
      */
     public void setMedidas(String medidas) {
         this.medidas = medidas;
+    }
+
+    /**
+     * Retorna o telefone do cliente.
+     *
+     * @return telefone de contato
+     */
+    public String getTelefone() {
+        return telefone;
+    }
+
+    /**
+     * Define o telefone do cliente.
+     *
+     * @param telefone telefone de contato
+     */
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    /**
+     * Retorna o endereço do cliente.
+     *
+     * @return endereço
+     */
+    public String getEndereco() {
+        return endereco;
+    }
+
+    /**
+     * Define o endereço do cliente.
+     *
+     * @param endereco endereço
+     */
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    /**
+     * Retorna o usuário de acesso vinculado.
+     *
+     * @return identificador do usuário, ou {@code null}
+     */
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    /**
+     * Define o usuário de acesso vinculado.
+     *
+     * @param idUsuario identificador do usuário
+     */
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
