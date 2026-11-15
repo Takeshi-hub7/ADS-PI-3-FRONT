@@ -34,6 +34,12 @@ public class ClientesController {
     /** Tamanho máximo do nome, igual ao limite da API. */
     private static final int TAMANHO_MAXIMO_NOME = 60;
 
+    /** Tamanho máximo do telefone, igual ao limite da API. */
+    private static final int TAMANHO_MAXIMO_TELEFONE = 15;
+
+    /** Tamanho máximo do endereço, igual ao limite da API. */
+    private static final int TAMANHO_MAXIMO_ENDERECO = 100;
+
     /** Título dos diálogos desta tela. */
     private static final String TITULO_TELA = "Clientes";
 
@@ -59,6 +65,10 @@ public class ClientesController {
     @FXML
     private TableColumn<Cliente, String> colunaCpf;
 
+    /** Coluna do telefone. */
+    @FXML
+    private TableColumn<Cliente, String> colunaTelefone;
+
     /** Coluna do RG. */
     @FXML
     private TableColumn<Cliente, String> colunaRg;
@@ -78,6 +88,14 @@ public class ClientesController {
     /** Campo do CPF. */
     @FXML
     private TextField campoCpf;
+
+    /** Campo do telefone. */
+    @FXML
+    private TextField campoTelefone;
+
+    /** Campo do endereço. */
+    @FXML
+    private TextField campoEndereco;
 
     /** Campo do RG. */
     @FXML
@@ -139,6 +157,8 @@ public class ClientesController {
         tabelaClientes.getSelectionModel().clearSelection();
         campoNome.clear();
         campoCpf.clear();
+        campoTelefone.clear();
+        campoEndereco.clear();
         campoRg.clear();
         campoNascimento.setValue(null);
         campoMedidas.clear();
@@ -162,9 +182,13 @@ public class ClientesController {
                 ? null : clienteEmEdicao.getIdCliente());
         cliente.setNome(campoNome.getText().trim());
         cliente.setCpf(Formatador.formatarCpf(campoCpf.getText()));
+        cliente.setTelefone(campoTelefone.getText().trim());
+        cliente.setEndereco(campoEndereco.getText().trim());
         cliente.setRg(campoRg.getText().trim());
         cliente.setDataNascimento(campoNascimento.getValue());
         cliente.setMedidas(campoMedidas.getText().trim());
+        cliente.setIdUsuario(clienteEmEdicao == null
+                ? null : clienteEmEdicao.getIdUsuario());
 
         botaoSalvar.setDisable(true);
         ExecutorAssincrono.executar(
@@ -211,6 +235,8 @@ public class ClientesController {
                 new ReadOnlyStringWrapper(dados.getValue().getNome()));
         colunaCpf.setCellValueFactory(dados ->
                 new ReadOnlyStringWrapper(dados.getValue().getCpf()));
+        colunaTelefone.setCellValueFactory(dados ->
+                new ReadOnlyStringWrapper(dados.getValue().getTelefone()));
         colunaRg.setCellValueFactory(dados ->
                 new ReadOnlyStringWrapper(dados.getValue().getRg()));
         colunaNascimento.setCellValueFactory(dados ->
@@ -267,6 +293,8 @@ public class ClientesController {
         clienteEmEdicao = cliente;
         campoNome.setText(cliente.getNome());
         campoCpf.setText(cliente.getCpf());
+        campoTelefone.setText(cliente.getTelefone());
+        campoEndereco.setText(cliente.getEndereco());
         campoRg.setText(cliente.getRg());
         campoNascimento.setValue(cliente.getDataNascimento());
         campoMedidas.setText(cliente.getMedidas());
@@ -291,6 +319,22 @@ public class ClientesController {
         }
         if (!Validador.isCpfValido(campoCpf.getText())) {
             return "CPF inválido.";
+        }
+        String telefone = campoTelefone.getText();
+        if (Validador.isVazio(telefone)) {
+            return "Informe o telefone do cliente.";
+        }
+        if (telefone.trim().length() > TAMANHO_MAXIMO_TELEFONE) {
+            return "O telefone deve ter no máximo "
+                    + TAMANHO_MAXIMO_TELEFONE + " caracteres.";
+        }
+        String endereco = campoEndereco.getText();
+        if (Validador.isVazio(endereco)) {
+            return "Informe o endereço do cliente.";
+        }
+        if (endereco.trim().length() > TAMANHO_MAXIMO_ENDERECO) {
+            return "O endereço deve ter no máximo "
+                    + TAMANHO_MAXIMO_ENDERECO + " caracteres.";
         }
         LocalDate nascimento = campoNascimento.getValue();
         if (nascimento != null && nascimento.isAfter(LocalDate.now())) {

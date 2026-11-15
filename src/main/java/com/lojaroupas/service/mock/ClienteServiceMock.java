@@ -110,6 +110,8 @@ public class ClienteServiceMock implements ClienteService {
         cliente.setIdCliente(proximoId++);
         cliente.setNome(nome);
         cliente.setCpf(cpf);
+        cliente.setTelefone("(19) 99999-0000");
+        cliente.setEndereco("Rua Exemplo, 100 - Indaiatuba");
         cliente.setRg(rg);
         cliente.setDataNascimento(nascimento);
         base.add(cliente);
@@ -145,6 +147,8 @@ public class ClienteServiceMock implements ClienteService {
         copia.setIdCliente(origem.getIdCliente());
         copia.setNome(origem.getNome());
         copia.setCpf(origem.getCpf());
+        copia.setTelefone(origem.getTelefone());
+        copia.setEndereco(origem.getEndereco());
         copia.setRg(origem.getRg());
         copia.setDataNascimento(origem.getDataNascimento());
         copia.setMedidas(origem.getMedidas());

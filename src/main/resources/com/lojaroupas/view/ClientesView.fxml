@@ -14,7 +14,7 @@
     Tela de clientes: lista com busca (esquerda) e formulário (direita).
     Controller: ClientesController.
     Os campos seguem os dados do cliente descritos pelo back-end:
-    nome, CPF, RG, data de nascimento e medidas.
+    nome, CPF, telefone, endereço, RG, data de nascimento e medidas.
 -->
 <VBox xmlns="http://javafx.com/javafx/26"
       xmlns:fx="http://javafx.com/fxml/1"
@@ -34,6 +34,7 @@
                 <columns>
                     <TableColumn fx:id="colunaNome" text="Nome"/>
                     <TableColumn fx:id="colunaCpf" text="CPF"/>
+                    <TableColumn fx:id="colunaTelefone" text="Telefone"/>
                     <TableColumn fx:id="colunaRg" text="RG"/>
                     <TableColumn fx:id="colunaNascimento"
                                  text="Nascimento"/>
@@ -52,6 +53,12 @@
 
             <Label text="CPF" styleClass="rotulo"/>
             <TextField fx:id="campoCpf" promptText="000.000.000-00"/>
+
+            <Label text="Telefone" styleClass="rotulo"/>
+            <TextField fx:id="campoTelefone" promptText="(00) 00000-0000"/>
+
+            <Label text="Endereço" styleClass="rotulo"/>
+            <TextField fx:id="campoEndereco"/>
 
             <Label text="RG (opcional)" styleClass="rotulo"/>
             <TextField fx:id="campoRg"/>
