@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Tela de peças do acervo: busca e lista (esquerda) e formulário (direita).
+    Controller: PecasController.
+    A busca pela etiqueta usa a rota GET /produtos/codigo/{codigo} da API.
+-->
+<VBox xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lojaroupas.controller.PecasController"
+      spacing="16" styleClass="tela">
+
+    <Label text="Peças" styleClass="titulo"/>
+    <Label text="Acervo da loja, peça por peça, com o código da etiqueta"
+           styleClass="subtitulo"/>
+
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+
+        <!-- Busca e lista -->
+        <VBox styleClass="cartao" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Etiqueta" styleClass="rotulo"/>
+                <TextField fx:id="campoCodigo" promptText="Ex.: TRJ-002"
+                           prefWidth="160" onAction="#buscarPorCodigo"/>
+                <Button text="Buscar pela etiqueta" onAction="#buscarPorCodigo"
+                        styleClass="botao-secundario"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Atualizar" onAction="#carregar"
+                        styleClass="botao-secundario"/>
+            </HBox>
+            <HBox spacing="8">
+                <TextField fx:id="campoBusca" HBox.hgrow="ALWAYS"
+                           promptText="Filtrar por código, descrição, cor ou material..."/>
+                <ComboBox fx:id="campoFiltroTamanho" prefWidth="150"
+                          promptText="Tamanho"/>
+            </HBox>
+            <TableView fx:id="tabelaPecas" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colunaCodigo" text="Código" prefWidth="90"/>
+                    <TableColumn fx:id="colunaDescricao" text="Descrição" prefWidth="240"/>
+                    <TableColumn fx:id="colunaTamanho" text="Tam." prefWidth="60"/>
+                    <TableColumn fx:id="colunaCor" text="Cor" prefWidth="120"/>
+                    <TableColumn fx:id="colunaMaterial" text="Material" prefWidth="110"/>
+                    <TableColumn fx:id="colunaPreco" text="Aluguel" prefWidth="95"/>
+                </columns>
+            </TableView>
+            <Label fx:id="rotuloTotal" styleClass="dica"/>
+        </VBox>
+
+        <!-- Formulário de cadastro e edição -->
+        <VBox styleClass="cartao" spacing="8"
+              prefWidth="320" minWidth="320">
+            <Label fx:id="rotuloTituloFormulario" text="Nova peça"
+                   styleClass="secao"/>
+
+            <Label text="Código da etiqueta *" styleClass="rotulo"/>
+            <TextField fx:id="campoCodigoForm" promptText="TRJ-009"/>
+
+            <Label text="Descrição *" styleClass="rotulo"/>
+            <TextField fx:id="campoDescricao"/>
+
+            <HBox spacing="10">
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Tamanho *" styleClass="rotulo"/>
+                    <ComboBox fx:id="campoTamanho" editable="true"
+                              maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Cor *" styleClass="rotulo"/>
+                    <TextField fx:id="campoCor"/>
+                </VBox>
+            </HBox>
+
+            <Label text="Material (opcional)" styleClass="rotulo"/>
+            <TextField fx:id="campoMaterial"/>
+
+            <Label text="Valor do aluguel (R$) *" styleClass="rotulo"/>
+            <TextField fx:id="campoPreco" promptText="0,00"/>
+
+            <Label fx:id="rotuloErro" styleClass="erro" wrapText="true"/>
+
+            <HBox spacing="8">
+                <Button fx:id="botaoSalvar" text="Salvar"
+                        onAction="#salvar" styleClass="botao-primario"/>
+                <Button text="Limpar" onAction="#novo"
+                        styleClass="botao-secundario"/>
+                <Button fx:id="botaoExcluir" text="Excluir"
+                        onAction="#excluir" styleClass="botao-perigo"/>
+            </HBox>
+            <Label text="* campos obrigatórios" styleClass="dica"/>
+        </VBox>
+    </HBox>
+</VBox>

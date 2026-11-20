@@ -10,10 +10,26 @@ import java.math.BigDecimal;
  * @param descricao descrição da peça
  * @param tamanho tamanho
  * @param cor cor
+ * @param material tecido principal (opcional)
  * @param preco valor do aluguel
  */
 public record Peca(Integer idPeca, String codigoUnico, String descricao,
-        String tamanho, String cor, BigDecimal preco) {
+        String tamanho, String cor, String material, BigDecimal preco) {
+
+    /**
+     * Cria uma peça sem material informado.
+     *
+     * @param idPeca identificador
+     * @param codigoUnico código da etiqueta
+     * @param descricao descrição
+     * @param tamanho tamanho
+     * @param cor cor
+     * @param preco valor do aluguel
+     */
+    public Peca(Integer idPeca, String codigoUnico, String descricao,
+            String tamanho, String cor, BigDecimal preco) {
+        this(idPeca, codigoUnico, descricao, tamanho, cor, null, preco);
+    }
 
     /**
      * Texto usado nas listas: código, descrição e tamanho.
