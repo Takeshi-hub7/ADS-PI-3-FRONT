@@ -6,6 +6,7 @@ import com.lojaroupas.service.FabricaServicos;
 import com.lojaroupas.util.Alertas;
 import com.lojaroupas.util.ExecutorAssincrono;
 import com.lojaroupas.util.Formatador;
+import com.lojaroupas.util.Mascaras;
 import com.lojaroupas.util.Sessao;
 import com.lojaroupas.util.Validador;
 import java.time.LocalDate;
@@ -137,6 +138,8 @@ public class ClientesController {
     private void initialize() {
         configurarTabela();
         configurarBusca();
+        Mascaras.aplicarCpf(campoCpf);
+        Mascaras.aplicarTelefone(campoTelefone);
 
         // DECISÃO PENDENTE com o grupo: o funcionário pode excluir?
         // Por ora só o administrador. Para liberar, remova as duas linhas.
@@ -271,6 +274,7 @@ public class ClientesController {
     }
 
     /** Recarrega a lista de clientes a partir do serviço. */
+    @FXML
     private void carregar() {
         ExecutorAssincrono.executar(
                 servico::listar,
