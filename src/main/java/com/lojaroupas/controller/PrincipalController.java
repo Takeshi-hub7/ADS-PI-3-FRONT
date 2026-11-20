@@ -29,6 +29,9 @@ public class PrincipalController {
     /** Arquivo FXML da tela de clientes. */
     private static final String TELA_CLIENTES = "ClientesView.fxml";
 
+    /** Arquivo FXML da tela de peças. */
+    private static final String TELA_PECAS = "PecasView.fxml";
+
     /** Arquivo FXML da tela de locações. */
     private static final String TELA_LOCACOES = "LocacoesView.fxml";
 
@@ -114,7 +117,7 @@ public class PrincipalController {
         }
         // Telas previstas para as próximas versões (item 11 de ES II):
         // ficam visíveis no menu, mas sem ação.
-        for (Button botao : List.of(botaoTrajes, botaoPecas, botaoAgenda,
+        for (Button botao : List.of(botaoTrajes, botaoAgenda,
                 botaoFuncionarios, botaoFinanceiro)) {
             marcarEmBreve(botao);
         }
@@ -135,11 +138,10 @@ public class PrincipalController {
                 "Cadastro de trajes e controle de status", botaoTrajes);
     }
 
-    /** Abre a tela de peças e estoque (provisória). */
+    /** Abre a tela de peças do acervo. */
     @FXML
     private void abrirPecas() {
-        abrirEmConstrucao("Peças e Estoque",
-                "Peças de cada traje e quantidade em estoque", botaoPecas);
+        abrirTela(TELA_PECAS, botaoPecas);
     }
 
     /** Abre a tela de locações. */
