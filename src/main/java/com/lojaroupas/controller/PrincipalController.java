@@ -32,6 +32,9 @@ public class PrincipalController {
     /** Arquivo FXML da tela de peças. */
     private static final String TELA_PECAS = "PecasView.fxml";
 
+    /** Arquivo FXML da tela de funcionários. */
+    private static final String TELA_FUNCIONARIOS = "FuncionariosView.fxml";
+
     /** Arquivo FXML da tela de locações. */
     private static final String TELA_LOCACOES = "LocacoesView.fxml";
 
@@ -118,7 +121,7 @@ public class PrincipalController {
         // Telas previstas para as próximas versões (item 11 de ES II):
         // ficam visíveis no menu, mas sem ação.
         for (Button botao : List.of(botaoTrajes, botaoAgenda,
-                botaoFuncionarios, botaoFinanceiro)) {
+                botaoFinanceiro)) {
             marcarEmBreve(botao);
         }
 
@@ -163,15 +166,13 @@ public class PrincipalController {
         abrirTela(TELA_CLIENTES, botaoClientes);
     }
 
-    /** Abre a tela de funcionários (provisória; só administrador). */
+    /** Abre a tela de funcionários (somente administrador). */
     @FXML
     private void abrirFuncionarios() {
         if (!exigirAdministrador()) {
             return;
         }
-        abrirEmConstrucao("Funcionários",
-                "Cadastro de funcionários (exclusivo do proprietário)",
-                botaoFuncionarios);
+        abrirTela(TELA_FUNCIONARIOS, botaoFuncionarios);
     }
 
     /** Abre a tela financeira (provisória; só administrador). */

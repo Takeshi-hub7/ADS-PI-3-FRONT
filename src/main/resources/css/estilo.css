@@ -254,3 +254,10 @@
 .indicador-numero { -fx-font-size: 34px; -fx-font-weight: bold;
                     -fx-text-fill: -cor-primaria; }
 .indicador-rotulo { -fx-font-size: 13px; -fx-text-fill: -cor-texto-suave; }
+
+/* ===== Formulário com rolagem (Funcionários) ===== */
+.rolagem-formulario, .rolagem-formulario > .viewport {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.situacao-inativo { -fx-text-fill: -cor-texto-fraco; }
