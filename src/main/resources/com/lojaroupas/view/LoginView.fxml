@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Ellipse?>
 
 <!--
     Tela de login.
@@ -24,7 +25,12 @@
     <VBox styleClass="login-cartao" spacing="10"
           maxWidth="380" maxHeight="-Infinity">
 
+        <StackPane alignment="CENTER_LEFT" maxWidth="-Infinity">
+            <Ellipse radiusX="34" radiusY="24" styleClass="monograma-fundo"/>
+            <Label text="KJ" styleClass="monograma-texto-grande"/>
+        </StackPane>
         <Label text="TRAJELOC" styleClass="titulo"/>
+        <Label text="Kris Josy Modas" styleClass="nome-loja"/>
         <Label text="Entre com sua conta para continuar"
                styleClass="subtitulo"/>
 
