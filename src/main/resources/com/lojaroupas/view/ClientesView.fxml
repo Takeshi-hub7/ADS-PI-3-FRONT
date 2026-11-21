@@ -28,8 +28,12 @@
 
         <!-- Lista de clientes com campo de busca -->
         <VBox styleClass="cartao" spacing="10" HBox.hgrow="ALWAYS">
-            <TextField fx:id="campoBusca"
-                       promptText="Buscar por nome, CPF ou RG..."/>
+            <HBox spacing="8">
+                <TextField fx:id="campoBusca" HBox.hgrow="ALWAYS"
+                           promptText="Buscar por nome, CPF ou RG..."/>
+                <Button text="Atualizar" onAction="#carregar"
+                        styleClass="botao-secundario"/>
+            </HBox>
             <TableView fx:id="tabelaClientes" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="colunaNome" text="Nome" prefWidth="200"/>

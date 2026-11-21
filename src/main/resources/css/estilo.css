@@ -247,3 +247,17 @@
     -fx-background-color: -cor-primaria;
     -fx-text-fill: white;
 }
+
+/* ===== Tela inicial (indicadores) ===== */
+.indicador { -fx-spacing: 4; -fx-border-color: transparent transparent transparent -cor-dourado;
+             -fx-border-width: 0 0 0 4; -fx-border-radius: 10; }
+.indicador-numero { -fx-font-size: 34px; -fx-font-weight: bold;
+                    -fx-text-fill: -cor-primaria; }
+.indicador-rotulo { -fx-font-size: 13px; -fx-text-fill: -cor-texto-suave; }
+
+/* ===== Formulário com rolagem (Funcionários) ===== */
+.rolagem-formulario, .rolagem-formulario > .viewport {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.situacao-inativo { -fx-text-fill: -cor-texto-fraco; }
