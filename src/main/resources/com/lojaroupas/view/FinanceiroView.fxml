@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Tela Financeiro (somente administrador).
+    Controller: FinanceiroController.
+    Mostra uma ESTIMATIVA de receita: soma do preço atual das peças de
+    cada locação, atribuída ao mês da data do evento. O sinal e os
+    pagamentos ainda não existem no back-end.
+    O cabeçalho (período e atualizar) fica fixo e o resto rola, para a
+    tela funcionar bem em janelas pequenas.
+    Identificadores usados pelo controller: comboPeriodo, rotuloReceita,
+    rotuloLocacoes, rotuloTicketMedio, rotuloPecas, rotuloAvisoPrecos,
+    graficoMeses, tabelaFuncionarios, tabelaPecas e suas colunas.
+-->
+<VBox xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lojaroupas.controller.FinanceiroController"
+      spacing="16" styleClass="tela">
+
+    <!-- Cabeçalho fixo: título, período e atualização -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Financeiro" styleClass="titulo"/>
+            <Label text="Receita estimada das locações"
+                   styleClass="subtitulo"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="comboPeriodo" prefWidth="230" minWidth="-Infinity"/>
+        <Button text="Atualizar" onAction="#carregar"
+                styleClass="botao-secundario" minWidth="-Infinity"/>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS"
+                styleClass="rolagem-pagina">
+        <VBox spacing="16">
+
+            <Label wrapText="true" styleClass="dica"
+                   text="Valores estimados: soma do preço atual das peças de cada locação, no mês da data do evento. O sinal e os pagamentos entram aqui quando o back-end tiver o módulo de pagamento."/>
+            <Label fx:id="rotuloAvisoPrecos" wrapText="true"
+                   styleClass="erro" visible="false" managed="false"/>
+
+            <!-- Indicadores em grade 2x2 (cabem em qualquer largura) -->
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50"/>
+                    <ColumnConstraints percentWidth="50"/>
+                </columnConstraints>
+                <VBox styleClass="cartao, indicador"
+                      GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label fx:id="rotuloReceita" text="–"
+                           styleClass="indicador-numero"/>
+                    <Label text="Receita estimada"
+                           styleClass="indicador-rotulo"/>
+                </VBox>
+                <VBox styleClass="cartao, indicador"
+                      GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label fx:id="rotuloLocacoes" text="–"
+                           styleClass="indicador-numero"/>
+                    <Label text="Locações no período"
+                           styleClass="indicador-rotulo"/>
+                </VBox>
+                <VBox styleClass="cartao, indicador"
+                      GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label fx:id="rotuloTicketMedio" text="–"
+                           styleClass="indicador-numero"/>
+                    <Label text="Ticket médio por locação"
+                           styleClass="indicador-rotulo"/>
+                </VBox>
+                <VBox styleClass="cartao, indicador"
+                      GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label fx:id="rotuloPecas" text="–"
+                           styleClass="indicador-numero"/>
+                    <Label text="Peças locadas"
+                           styleClass="indicador-rotulo"/>
+                </VBox>
+            </GridPane>
+
+            <!-- Gráfico de receita por mês -->
+            <VBox styleClass="cartao" spacing="10" prefHeight="340">
+                <Label text="Receita estimada por mês" styleClass="secao"/>
+                <BarChart fx:id="graficoMeses" styleClass="grafico-meses"
+                          animated="false" legendVisible="false"
+                          categoryGap="14" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <CategoryAxis/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis/>
+                    </yAxis>
+                </BarChart>
+            </VBox>
+
+            <!-- Tabelas por funcionário e por peça, em largura total -->
+            <VBox styleClass="cartao" spacing="8" prefHeight="260">
+                <Label text="Por funcionário" styleClass="secao"/>
+                <TableView fx:id="tabelaFuncionarios" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colunaFuncionario"
+                                     text="Funcionário"/>
+                        <TableColumn fx:id="colunaLocacoesFunc"
+                                     text="Locações"/>
+                        <TableColumn fx:id="colunaReceitaFunc"
+                                     text="Receita"/>
+                    </columns>
+                </TableView>
+            </VBox>
+            <VBox styleClass="cartao" spacing="8" prefHeight="330">
+                <Label text="Peças mais alugadas" styleClass="secao"/>
+                <TableView fx:id="tabelaPecas" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colunaCodigo" text="Código"/>
+                        <TableColumn fx:id="colunaDescricao" text="Peça"/>
+                        <TableColumn fx:id="colunaVezes" text="Vezes"/>
+                        <TableColumn fx:id="colunaReceitaPeca"
+                                     text="Receita"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</VBox>

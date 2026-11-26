@@ -261,3 +261,14 @@
     -fx-background: transparent;
 }
 .situacao-inativo { -fx-text-fill: -cor-texto-fraco; }
+
+/* ===== Financeiro: página com rolagem e gráfico de receita por mês ===== */
+/* Só o fundo fica transparente. Não usar "-fx-background: transparent"
+   aqui: o JavaFX calcula a cor padrão do texto (como os eixos do gráfico)
+   a partir dele, e o texto ficaria branco sobre o fundo claro. */
+.rolagem-pagina, .rolagem-pagina > .viewport {
+    -fx-background-color: transparent;
+}
+.grafico-meses .chart-bar {
+    -fx-bar-fill: -cor-primaria;
+}

@@ -38,6 +38,9 @@ public class PrincipalController {
     /** Arquivo FXML da tela de locações. */
     private static final String TELA_LOCACOES = "LocacoesView.fxml";
 
+    /** Arquivo FXML da tela financeira. */
+    private static final String TELA_FINANCEIRO = "FinanceiroView.fxml";
+
     /** Classe de estilo dos itens previstos para as próximas versões. */
     private static final String CLASSE_EM_BREVE = "em-breve";
 
@@ -120,8 +123,7 @@ public class PrincipalController {
         }
         // Telas previstas para as próximas versões (item 11 de ES II):
         // ficam visíveis no menu, mas sem ação.
-        for (Button botao : List.of(botaoTrajes, botaoAgenda,
-                botaoFinanceiro)) {
+        for (Button botao : List.of(botaoTrajes, botaoAgenda)) {
             marcarEmBreve(botao);
         }
 
@@ -175,15 +177,13 @@ public class PrincipalController {
         abrirTela(TELA_FUNCIONARIOS, botaoFuncionarios);
     }
 
-    /** Abre a tela financeira (provisória; só administrador). */
+    /** Abre a tela financeira (só administrador). */
     @FXML
     private void abrirFinanceiro() {
         if (!exigirAdministrador()) {
             return;
         }
-        abrirEmConstrucao("Financeiro",
-                "Receitas e resumo financeiro (exclusivo do proprietário)",
-                botaoFinanceiro);
+        abrirTela(TELA_FINANCEIRO, botaoFinanceiro);
     }
 
     /** Encerra a sessão, após confirmação, e volta ao login. */
