@@ -36,6 +36,9 @@ public final class FabricaServicos {
     /** Serviço de locações em uso; criado na primeira chamada. */
     private static LocacaoService locacaoService;
 
+    /** Serviço financeiro em uso; criado na primeira chamada. */
+    private static FinanceiroService financeiroService;
+
     /** Impede a criação de instâncias da classe utilitária. */
     private FabricaServicos() {
     }
@@ -134,5 +137,23 @@ public final class FabricaServicos {
                     ? new LocacaoServiceMock() : new LocacaoServiceApi();
         }
         return locacaoService;
+    }
+
+    /**
+     * Retorna o serviço financeiro, criando-o se necessário.
+     *
+     * <p>Por enquanto é uma estimativa calculada a partir dos serviços de
+     * locação, peça e funcionário, então funciona igual nos modos mock e
+     * API.</p>
+     *
+     * @return serviço financeiro em uso
+     */
+    public static synchronized FinanceiroService obterFinanceiroService() {
+        if (financeiroService == null) {
+            financeiroService = new FinanceiroServiceEstimado(
+                    obterLocacaoService(), obterPecaService(),
+                    obterFuncionarioService());
+        }
+        return financeiroService;
     }
 }
